@@ -1,0 +1,18 @@
+.button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 12px;
+    padding: 10px 111px;
+    background: var(--btn-color);
+    font-size: 19px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+        background: var(--btn-color-hover);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
+    }
+}

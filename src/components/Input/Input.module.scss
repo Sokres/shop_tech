@@ -1,0 +1,16 @@
+.labelInput {}
+
+.input {
+    border: 1px solid var(--stroke);
+    border-radius: 11px;
+    padding: 10px 10px 10px 10px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    &:focus {
+        outline: var(--alt-text) solid 1px;
+    }
+}
