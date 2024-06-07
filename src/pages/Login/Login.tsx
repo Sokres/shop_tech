@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
-import { FormEvent, useState } from 'react';
-import supabase from '../../superbase';
+import { FormEvent, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import { login, userAction } from '../../store/user.slice';
 
 export type LoginForm = {
 	email: {
@@ -13,30 +15,30 @@ export type LoginForm = {
 	};
 };
 const Login = () => {
-	const [er, setEr] = useState<string | undefined>();
-	console.log(er);
-
+	// const [er, setEr] = useState<string | undefined>();
+	const navigate = useNavigate();
+	const dispatch = useDispatch<AppDispatch>();
+	const { jwt, loginError } = useSelector((s: RootState) => s.user);
+	useEffect(() => {
+		if (jwt) {
+			navigate('/');
+		}
+	}, [jwt, navigate]);
 	const submit = async (e: FormEvent) => {
 		e.preventDefault();
-		// setEr(false);
+		dispatch(userAction.cleatloginError());
 		const target = e.target as typeof e.target & LoginForm;
 		const { email, password } = target;
 		await sendLog(email.value, password.value);
 	};
 	const sendLog = async (email: string, password: string) => {
-		const { data, error } = await supabase.auth.signInWithPassword({
-			email: email,
-			password: password,
-		});
-		setEr(error?.message);
-		// console.log(data);
-		console.log(error?.message === undefined);
+		dispatch(login({ email, password }));
 	};
 	return (
 		<div className="auth-wraper">
 			<form className="form-auth" onSubmit={submit}>
 				<h1 className="form-auth__title">Вход</h1>
-				{er && (
+				{loginError && (
 					<div className="message-error">Неправильный логин или пароль</div>
 				)}
 				<Input

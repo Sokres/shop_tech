@@ -13,13 +13,20 @@ import axios from 'axios';
 import { PREFIX } from './helpers/API.ts';
 import AuthLayot from './layout/Auth/AuthLayot.tsx';
 import Registration from './pages/Registration/Registration.tsx';
+import RecAuth from './helpers/RecAuth.tsx';
+import { store } from './store/store.ts';
+import { Provider } from 'react-redux';
 
 const Catalog = lazy(() => import('./pages/Catalog/Catalog'));
 
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <Layout />,
+		element: (
+			<RecAuth>
+				<Layout />
+			</RecAuth>
+		),
 		children: [
 			{
 				path: '/',
@@ -69,7 +76,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		{/* <App /> */}
-		<RouterProvider router={router} />
+		<Provider store={store}>
+			<RouterProvider router={router} />
+		</Provider>
 	</React.StrictMode>
 );
