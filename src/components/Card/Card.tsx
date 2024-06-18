@@ -11,6 +11,7 @@ const Card: FC<CardProps> = (props) => {
 		e.preventDefault();
 		dispach(cartAction.addItem(props.id));
 	};
+	// Вопрос, нужно ли делать фиксированную высоту до того как подгрузились картинки
 	return (
 		<div className="product-card__item card">
 			<Link to={`/product/${props.id}`}>

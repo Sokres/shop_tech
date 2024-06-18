@@ -234,6 +234,7 @@ h3 {
 
 
 .link-cart {
+  position: relative;
   margin-left: 20px;
   flex-basis: auto;
   display: flex;
@@ -255,6 +256,20 @@ h3 {
 
 .link-cart__text {
   color: var(--text);
+}
+
+.link-cart__item {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  background-color: var(--btn-color);
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.4;
+  color: var(--baisc);
 }
 
 .user {
@@ -336,7 +351,7 @@ h3 {
 }
 
 .product-card__item {
-  margin: 0 10px;
+  margin: 10px 10px;
   width: calc(33% - 20px);
 }
 
@@ -458,6 +473,5 @@ h3 {
 
   &:hover {
     box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.25);
-
   }
 }

@@ -31,7 +31,13 @@ const router = createBrowserRouter([
 			{
 				path: '/',
 				element: (
-					<Suspense fallback={<>Загрузка </>}>
+					<Suspense
+						fallback={
+							<>
+								<img src="./img/spinning-circles.svg" alt="" />
+							</>
+						}
+					>
 						<Catalog />
 					</Suspense>
 				),
@@ -48,7 +54,7 @@ const router = createBrowserRouter([
 					// const { data } = await axios.get(`${PREFIX}/product/${params.id}`);
 					// return data;
 					return defer({
-						data: await axios.get(`${PREFIX}/product/${params.id}`),
+						data: await axios.get(`${PREFIX}/${params.id}`),
 					});
 				},
 			},
